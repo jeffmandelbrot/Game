@@ -1,9 +1,9 @@
 # Game
 ## Compilation
-g++ -std=c++11 -lpthread -c main.cpp &&
+g++ -std=c++11 -lpthread -c main.cpp
 
-g++ -std=c++11 -lpthread \*.o -o bin/game -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network &&
+g++ -std=c++11 -lpthread \*.o -o bin/game -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 
-cd bin &&
+cd bin
 
 ./game
