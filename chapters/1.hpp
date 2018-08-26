@@ -12,11 +12,10 @@ void draw_title_screen_bg(){
 exitcode chapter_1(){
 	std::cout << "Math::sqrt testing\n";
 
-	Math meth;
+	Math math;
 
-	const vector <unsigned> vals{1,2,3,4,5,6,7,8,9,10};
-	for (auto i : vals)
-		std::cout << "my_sqrt(" << i << ", 1000, 1.01) = " << meth.sqrt(i, 1000, 1.01) << '\n';
+	std::cout << "math.sqrt(2)          = " << math.sqrt(2) << '\n';
+	std::cout << "math.accurate_sqrt(2) = " << math.accurate_sqrt(2) << '\n';
 
 	return success;
 }
