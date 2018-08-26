@@ -14,8 +14,7 @@ exitcode chapter_1(){
 
 	Math math;
 
-	std::cout << "math.sqrt(2)          = " << math.sqrt(2) << '\n';
-	std::cout << "math.accurate_sqrt(2) = " << math.accurate_sqrt(2) << '\n';
+	std::cout << "math.sqrt(2) = " << math.sqrt(2) << '\n';
 
 	return success;
 }
