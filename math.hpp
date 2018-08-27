@@ -9,14 +9,17 @@ using std::vector;
 struct Math{
 	Math(const unsigned short numberPrecision=8){std::cout.precision(numberPrecision);}
 
-	double long n_root(const double long, const unsigned long long=15000, const double long=1.005, const unsigned long long power=2);
-	unsigned long long n_root_result_size(const double long, const unsigned long long=15000, const double long=1.005, const unsigned long long=2);
+	// Default power in n_root* is 2 (square)
+	double long n_root(const double long, const unsigned long long=55000, const double long=1.001, const unsigned long long power=2);
+	unsigned long long n_root_result_size(const double long, const unsigned long long=55000, const double long=1.001, const unsigned long long=2);
 	double long pow(const double long, const unsigned long long=2);
+	template <typename T>
+	vector <T> map_copy(const vector <T>, const unsigned long long=1);
+	template <typename T>
+	void map(const vector <T> &, const unsigned long long=1);
 
 	template <typename T>	
 	T get_middle_elem(const vector <T>);
-	template <typename T>
-	bool close(const T, const T, const double long=1.05);
 	template <typename T>
 	bool in_range(const T, const T, const T);
 };

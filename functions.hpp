@@ -69,4 +69,13 @@ exitcode run_chapter(const unsigned n){
 	return finished;
 }
 
+template <typename T>
+void print_vec(const vector <T> vec){
+	if (vec.empty()) return;
+	std::cout << "{" << vec[0];
+	for (unsigned i = 1; i < vec.size(); i++)
+		std::cout << ", " << vec[i];
+	std::cout << "}\n";
+}
+
 #endif // FUNCTIONS_HPP

@@ -12,5 +12,6 @@
 
 #include "exitcode.hpp"
 #include "crypters/crypters.hpp"
+#include "math.hpp"
 
 #endif
