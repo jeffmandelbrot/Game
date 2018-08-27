@@ -38,8 +38,16 @@ unsigned long long Math::n_root_result_size(const double long n, const unsigned 
 }
 
 template <typename T>
+T get_highest_val(const vector <T> vec){
+	T out;
+	for (T idx : vec)
+		out = idx > out ? idx : out;
+	return out;
+}
+
+template <typename T>
 void Math::map(const vector <T> &vec, const unsigned long long highestVal){
-	const T highestVecVal = vec[vec.size()-1];
+	const T highestVecVal = get_highest_val(vec);
 	for (unsigned long long i = 0; i < vec.size(); i++)
 		vec[i] /= highestVecVal / highestVal;
 }
