@@ -24,6 +24,8 @@ struct Math{
 	bool in_range(const T, const T, const T);
 	template <typename T>
 	void print_vec(const vector <T>);
+	template <typename T>
+	T Math::get_val(const vector <T>, const bool=true);
 };
 
 #endif // MATH_HPP
