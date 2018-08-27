@@ -39,11 +39,23 @@ unsigned long long Math::n_root_result_size(const double long n, const unsigned 
 
 template <typename T>
 void Math::map(const vector <T> &vec, const unsigned long long highestVal){
-	const vector <T> tmp = map_copy(vec, highestVal);
-	return tmp;
+	const T highestVecVal = vec[vec.size()-1];
+	for (unsigned long long i = 0; i < vec.size(); i++)
+		vec[i] /= highestVecVal / highestVal;
 }
 
 template <typename T>
 vector <T> Math::map_copy(const vector <T> vec, const unsigned long long highestVal){
-	const vector <T> tmp = map()
+	vector <T> tmp = vec;
+	map(tmp, highestVal);
+	return tmp;
+}
+
+template <typename T>
+void Math::print_vec(const vector <T> vec){
+	if (vec.empty()) return;
+	std::cout << "{" << vec[0];
+	for (unsigned i = 1; i < vec.size(); i++)
+		std::cout << ", " << vec[i];
+	std::cout << "}\n";
 }

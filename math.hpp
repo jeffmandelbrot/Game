@@ -22,6 +22,8 @@ struct Math{
 	T get_middle_elem(const vector <T>);
 	template <typename T>
 	bool in_range(const T, const T, const T);
+	template <typename T>
+	void print_vec(const vector <T>);
 };
 
 #endif // MATH_HPP
