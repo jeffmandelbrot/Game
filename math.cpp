@@ -47,13 +47,15 @@ T Math::get_val(const vector <T> vec, const bool highestVal){
 
 template <typename T>
 void Math::map(const vector <T> &vec, const T low, const T high){
-	const T highestVecVal = get_highest_val(vec);
-	const T lowestVecVal  = get_val(vec, false);
-	const double long delta = highestVecVal / vec.size();
-
-	for (double long i = )
-	
-	//	for (unsigned long long i = 0; i < vec.size(); i++)
+	const T lowestVecVal =  get_val(vec, false);
+	const T highestVecVal = get_val(vec);
+	for (unsigned long long i = 0; i < vec.size(); i++){
+		vec[i] += lowestVecVal;
+		vec[i] /= highestVecval;
+		vec[i] *= high
+	}
+		
+		//	for (unsigned long long i = 0; i < vec.size(); i++)
 	//	vec[i] /= highestVecVal / highestVal;
 }
 
