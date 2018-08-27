@@ -38,18 +38,23 @@ unsigned long long Math::n_root_result_size(const double long n, const unsigned 
 }
 
 template <typename T>
-T get_highest_val(const vector <T> vec){
+T get_val(const vector <T> vec, const bool highestVal){
 	T out;
 	for (T idx : vec)
-		out = idx > out ? idx : out;
+		out = (highestVal ? (idx > out ? idx : out) : (idx < out ? idx : out))
 	return out;
 }
 
 template <typename T>
-void Math::map(const vector <T> &vec, const unsigned long long highestVal){
+void Math::map(const vector <T> &vec, const T low, const T high){
 	const T highestVecVal = get_highest_val(vec);
-	for (unsigned long long i = 0; i < vec.size(); i++)
-		vec[i] /= highestVecVal / highestVal;
+	const T lowestVecVal  = get_lowest_val(vec);
+	const double long delta = highestVecVal / vec.size();
+
+	for (double long i = )
+	
+	//	for (unsigned long long i = 0; i < vec.size(); i++)
+	//	vec[i] /= highestVecVal / highestVal;
 }
 
 template <typename T>
