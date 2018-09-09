@@ -1,6 +1,12 @@
 #ifndef MATH_HPP
 #define MATH_HPP
 
+// Constants
+#define TAU 6.2831853071795864769
+#define PI  3.1415926535897932384
+#define E   2.7182818284590452353
+#define PHI 1.6180339887498948482
+
 #include "includes.hpp"
 
 using std::string;
@@ -9,6 +15,7 @@ using std::vector;
 struct Math{
 	Math(const unsigned short numberPrecision=8){std::cout.precision(numberPrecision);}
 
+	// Function definitions (in hpp file because of weird template errors)
 	template <typename T>
 	bool in_range(const T val, const T low, const T high){
 		return val >= low && val <= high;
@@ -44,18 +51,18 @@ struct Math{
 	}
 
 	template <typename T>
-	void map(const vector <T> &vec, const unsigned long long highestVal=1){
-		const T highestVecVal = vec[vec.size()-1];
+	void map(const vector <T> &vec, const T high=1){
+		const T highestVecVal = get_highest_val(vec);
 		for (unsigned long long i = 0; i < vec.size(); i++){
 			vec[i] /= highestVecVal;
-			vec[i] *= highestVal;
+			vec[i] *= high;
 		}
 	}
 
 	template <typename T>
-	vector <T> map_copy(const vector <T> vec, const unsigned long long highestVal=1){
+	vector <T> map_copy(const vector <T> vec, const T high=1){
 		vector <T> tmp = vec;
-		map(tmp, highestVal);
+		map(tmp, high);
 		return tmp;
 	}
 
@@ -73,6 +80,11 @@ struct Math{
 		for (unsigned i = 1; i < vec.size(); i++)
 			std::cout << ',' << vec[i];
 		std::cout << '}';
+	}
+
+	template <typename T>
+	vector <T> polar_to_cartesian(const T deg, const T r){
+		return {cos(deg) * r, sin(deg) * r};
 	}
 };
 

@@ -4,7 +4,10 @@
 #include "includes.hpp"
 #include "chapters.hpp"
 
-const std::vector <std::string> recordingPrograms{
+using std::string;
+using std::vector;
+
+const vector <string> recordingPrograms{
 	"obs", // Screen recording programs
 	"obs-studio",	
 	"kazam",
@@ -42,16 +45,16 @@ const std::vector <std::string> recordingPrograms{
 	"skype"
 };
 
-bool program_open(const std::string process){
+bool program_open(const string process){
 	return system(("pgrep -x " + process + " > /dev/null").c_str()) == 0;
 }
 
-bool kill_process(const std::string process){
+bool kill_process(const string process){
 	return system(("pkill " + process).c_str()) == 0;
 }
 
-extern unsigned numRecOpen;
 // Always tries to kill any recording programs
+extern unsigned numRecOpen;
 void recording_prevention(){
 	for (;;){
 		for (std::string recorder : recordingPrograms)
@@ -68,14 +71,11 @@ exitcode run_chapter(const unsigned n){
 	std::cout << "---Finished, press enter to exit---\n";
 	return finished;
 }
-
-template <typename T>
-void print_vec(const vector <T> vec){
-	if (vec.empty()) return;
-	std::cout << "{" << vec[0];
-	for (unsigned i = 1; i < vec.size(); i++)
-		std::cout << ", " << vec[i];
-	std::cout << "}\n";
+/*
+void draw_spr(sf::RenderWindow &window, sf::Sprite &spr, const unsigned x, const unsigned y, const sf::Color color={255,255,255}){
+	spr.setPosition(x, y);
+	spr.setColor(color);
+	window.draw(spr);
 }
-
+*/
 #endif // FUNCTIONS_HPP
