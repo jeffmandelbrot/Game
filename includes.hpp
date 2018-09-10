@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <vector>
+#include <fstream>
 #include <sstream>
 #include <cstdlib>
 #include <thread>
