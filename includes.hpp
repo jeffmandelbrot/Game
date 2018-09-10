@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <map>
 #include <thread>
 
 #include "exitcode.hpp"
