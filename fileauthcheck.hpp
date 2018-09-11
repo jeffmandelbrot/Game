@@ -1,3 +1,7 @@
+// This file probably doesnt compile, and it sure doesn't work.
+// Delete this if you're compiling from source.
+// I'll fix this sometime soon, not now
+
 #ifndef FILEAUTHCHECK_HPP
 #define FILEAUTHCHECK_HPP
 
