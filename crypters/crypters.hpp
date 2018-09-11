@@ -1,3 +1,5 @@
+// I will revamp this file later, such as making it use an alphabet
+
 #ifndef CRYPTERS_HPP
 #define CRYPTERS_HPP
 
