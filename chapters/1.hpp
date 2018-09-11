@@ -8,6 +8,9 @@ using std::string;
 using std::vector;
 
 extern sf::RenderWindow window;
+extern const sf::Time defaultTextDelay;
+extern const unsigned defaultVerticalTextSpacing;
+extern const unsigned defaultHorizontalTextSpacing;
 
 void draw_spr(sf::RenderWindow &window, sf::Sprite &spr, const unsigned x, const unsigned y, const sf::Color color={255,255,255}){
 	spr.setPosition(x, y);
@@ -31,7 +34,7 @@ void draw_intro_bg(sf::RenderWindow &window, sf::Sprite &spr){
 		sf::Color color;
 		color.r = (window.getSize().y/2 - r*3) < 0 ? 0 : window.getSize().y/2 - r*3;
 		color.b = pow(r, PI);
-		color.g = (window.getSize().y/2 - r*2) < 0 ? 0 : window.getSize().y/2 - r*2;
+		color.g = (window.getSize().y/2 - r*1.8) < 0 ? 0 : window.getSize().y/2 - r*1.8;
 
 		unsigned numPoints = r*4.45;
 
@@ -40,11 +43,23 @@ void draw_intro_bg(sf::RenderWindow &window, sf::Sprite &spr){
 	}
 }
 
+void draw_text_gradually(sf::RenderWindow &window, sf::Text &text, const sf::Time delay){
+	const string textStr = text.getString();
+
+	for (unsigned i = 1; i <= textStr.length(); i++){
+		text.setString(textStr.substr(0,i));
+		window.draw(text);
+		window.display();
+		sf::sleep(delay);
+	}
+}
+
 exitcode chapter_1(){
+	std::cout << "SFML version: " << SFML_VERSION_MAJOR << '.' << SFML_VERSION_MINOR << '\n';
 	// Play background music
 	sf::Music bgMusic;
 	bgMusic.openFromFile("audio/lsd.wav");
-	bgMusic.play();
+//	bgMusic.play();
 
 	// Font
 	sf::Font monospace;
@@ -54,22 +69,51 @@ exitcode chapter_1(){
 	sf::Text bangbangTxt;
 	bangbangTxt.setFont(monospace);
 	bangbangTxt.setString("welcome");
-	bangbangTxt.setCharacterSize(14);
-	bangbangTxt.setPosition(window.getSize().x/2, window.getSize().y/2);
+	bangbangTxt.setCharacterSize(68);
+	bangbangTxt.setPosition(window.getSize().x/2 - bangbangTxt.getLocalBounds().width/2, window.getSize().y/2.5);
 
 	sf::Texture pxlTxt; pxlTxt.loadFromFile("imgs/pixel.png");
 	sf::Sprite  pxlSpr; pxlSpr.setTexture(pxlTxt);
 
 	bool closed = false;
 
-	draw_intro_bg(window, pxlSpr);
+	// Draw intro bg
+//	draw_intro_bg(window, pxlSpr);
 
+	draw_text_gradually(window, bangbangTxt, defaultTextDelay);
+
+	// Main menu text
+	sf::Text startText;
+	startText.setFont(monospace);
+	startText.setString("start");
+	startText.setCharacterSize(40);
+
+	sf::Text exitText;
+	exitText.setFont(monospace);
+	exitText.setString("exit");
+	exitText.setCharacterSize(40);
+
+	startText.setFillColor({0, 0, 0});
+	exitText. setFillColor({0, 0, 0});
+
+	const unsigned startTextX = window.getSize().x/2 - startText.getLocalBounds().width/2;
+	const unsigned startTextY = window.getSize().y/2 + window.getSize().y/16;
+	const unsigned exitTextX  = window.getSize().x/2 - exitText.getLocalBounds().width/2;
+	const unsigned exitTextY  = window.getSize().y/2 + window.getSize().y/16 +startText.getLocalBounds().height + defaultVerticalTextSpacing;
+
+	startText.setPosition(startTextX, startTextY);
+	exitText.setPosition(exitTextX, exitTextY);
+
+	draw_text_gradually(window, startText, defaultTextDelay);
+	draw_text_gradually(window, exitText, defaultTextDelay);
+
+	SFMLExtension extension;
 	while (!closed){
+		// Backup for debugging
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 			closed = true;
 
-		window.draw(bangbangTxt);
-		window.display();
+		closed = extension.text_clicked(window, exitText);
 	}
 
 	return success;
