@@ -71,11 +71,5 @@ exitcode run_chapter(const unsigned n){
 	std::cout << "---Finished, press enter to exit---\n";
 	return finished;
 }
-/*
-void draw_spr(sf::RenderWindow &window, sf::Sprite &spr, const unsigned x, const unsigned y, const sf::Color color={255,255,255}){
-	spr.setPosition(x, y);
-	spr.setColor(color);
-	window.draw(spr);
-}
-*/
+
 #endif // FUNCTIONS_HPP
